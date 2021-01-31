@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "osu.Game", "osu\osu.Game\osu.Game.csproj", "{57428209-05DB-4000-8FAA-5C152F3BCB57}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "osu.Game.Rulesets.Catch", "osu\osu.Game.Rulesets.Catch\osu.Game.Rulesets.Catch.csproj", "{8B1A2567-E0DF-4D50-B9D1-26511B90A4B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DifficultyUX", "DifficultyUX\DifficultyUX.csproj", "{4D8FF408-36DF-4966-AC5D-7E53CF2A7BCD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57428209-05DB-4000-8FAA-5C152F3BCB57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57428209-05DB-4000-8FAA-5C152F3BCB57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57428209-05DB-4000-8FAA-5C152F3BCB57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57428209-05DB-4000-8FAA-5C152F3BCB57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B1A2567-E0DF-4D50-B9D1-26511B90A4B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B1A2567-E0DF-4D50-B9D1-26511B90A4B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B1A2567-E0DF-4D50-B9D1-26511B90A4B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B1A2567-E0DF-4D50-B9D1-26511B90A4B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D8FF408-36DF-4966-AC5D-7E53CF2A7BCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D8FF408-36DF-4966-AC5D-7E53CF2A7BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D8FF408-36DF-4966-AC5D-7E53CF2A7BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D8FF408-36DF-4966-AC5D-7E53CF2A7BCD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F6FEE6F-A248-48AE-877C-21AD75F1C04E}
+	EndGlobalSection
+EndGlobal
