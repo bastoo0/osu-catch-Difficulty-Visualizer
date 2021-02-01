@@ -30,8 +30,8 @@
                 <ColumnDefinition Width="75*"/>
                 <ColumnDefinition Width="75*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="openButton" Content="Open beatmap" Margin="10,0,10,0" VerticalAlignment="Center" RenderTransformOrigin="0.522,1.061" Grid.Column="1" Click="openButton_Click" Height="44" FontSize="16"/>
-            <TextBlock x:Name="mapName" HorizontalAlignment="Center" TextWrapping="Wrap" Text="No beatmap chosen" VerticalAlignment="Center" Width="198" Height="22" FontSize="14" TextAlignment="Right"/>
+            <Button x:Name="openButton" Content="Open beatmap" Margin="218,0,10,0" VerticalAlignment="Center" RenderTransformOrigin="0.522,1.061" Click="openButton_Click" Height="44" FontSize="16" Grid.ColumnSpan="2"/>
+            <TextBlock x:Name="mapName" HorizontalAlignment="Left" TextWrapping="Wrap" Text="No beatmap chosen" VerticalAlignment="Center" Width="198" Height="22" FontSize="14" TextAlignment="Right" Margin="8,0,0,0"/>
             <CheckBox x:Name="cbHR" Content="HR" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="cbHR_Checked" Unchecked="cbHR_Unchecked" Height="15" Width="36"/>
             <CheckBox x:Name="cbDT" Content="DT" Grid.Column="3" VerticalAlignment="Center" Margin="17,0,17,0" Checked="cbDT_Checked" Unchecked="cbDT_Unchecked" Height="15"/>
             <CheckBox x:Name="cbEZ" Content="EZ" Grid.Column="4" VerticalAlignment="Center" Margin="17,0,17,0" Checked="cbEZ_Checked" Unchecked="cbEZ_Unchecked" Height="15"/>
@@ -82,7 +82,7 @@
         <CheckBox x:Name="diffData" Content="Hide Difficulty Data" Grid.Column="2" HorizontalAlignment="Left" Margin="66,125,0,0" VerticalAlignment="Top" Checked="diffData_Checked" Unchecked="diffData_Unchecked" Height="15" Width="123"/>
         <Label x:Name="openBeatmapLabel" Content="Open a beatmap to continue" Grid.Column="1" HorizontalAlignment="Left" Margin="466,119,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="36" Grid.ColumnSpan="2" Width="468" Height="58"/>
         <Label Content="Tool made by bastoo0 &amp; Ttobas - Game content made and copyrighted by ppy Pty Ltd" Grid.Column="2" HorizontalAlignment="Left" Margin="200,43,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="10"/>
-        <Label x:Name="Tip" Content="Tips:&#10;- Click in the graph to jump to the object&#10;- Use the slider at the bottom to scroll through the beatmap" Grid.Column="1" HorizontalAlignment="Left" Margin="20,15,0,0" VerticalAlignment="Top" Width="365" Height="59"/>
-        <Image Grid.Column="2" HorizontalAlignment="Left" Height="80" Margin="532,8,0,0" VerticalAlignment="Top" Width="80" Source="/osulogo.png"/>
+        <Label x:Name="Tip" Content="Tips:&#10;- Click in the graph to jump to the object&#10;- Use the slider at the bottom to scroll through the beatmap" Grid.Column="1" HorizontalAlignment="Left" Margin="20,15,0,0" VerticalAlignment="Top" Width="365" Height="59" FontSize="13"/>
+        <Image Grid.Column="2" RenderOptions.BitmapScalingMode="HighQuality" HorizontalAlignment="Left" Height="80" Margin="532,8,0,0" VerticalAlignment="Top" Width="80" Source="/osu.png"/>
     </Grid>
 </Window>
