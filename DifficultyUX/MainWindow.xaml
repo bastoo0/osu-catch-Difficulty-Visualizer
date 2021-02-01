@@ -82,5 +82,7 @@
         <CheckBox x:Name="diffData" Content="Hide Difficulty Data" Grid.Column="2" HorizontalAlignment="Left" Margin="66,125,0,0" VerticalAlignment="Top" Checked="diffData_Checked" Unchecked="diffData_Unchecked" Height="15" Width="123"/>
         <Label x:Name="openBeatmapLabel" Content="Open a beatmap to continue" Grid.Column="1" HorizontalAlignment="Left" Margin="466,119,0,0" Grid.Row="1" VerticalAlignment="Top" FontSize="36" Grid.ColumnSpan="2" Width="468" Height="58"/>
         <Label Content="Tool made by bastoo0 &amp; Ttobas - Game content made and copyrighted by ppy Pty Ltd" Grid.Column="2" HorizontalAlignment="Left" Margin="200,43,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="10"/>
+        <Label x:Name="Tip" Content="Tips:&#10;- Click in the graph to jump to the object&#10;- Use the slider at the bottom to scroll through the beatmap" Grid.Column="1" HorizontalAlignment="Left" Margin="20,15,0,0" VerticalAlignment="Top" Width="365" Height="59"/>
+        <Image Grid.Column="2" HorizontalAlignment="Left" Height="80" Margin="532,8,0,0" VerticalAlignment="Top" Width="80" Source="/osulogo.png"/>
     </Grid>
 </Window>

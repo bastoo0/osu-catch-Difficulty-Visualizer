@@ -71,6 +71,7 @@ namespace DifficultyUX
             Chart.Visibility = Visibility.Collapsed;
             ScrollPlayfield.Visibility = Visibility.Collapsed;
             playFieldSlider.Visibility = Visibility.Collapsed;
+            Tip.Visibility = Visibility.Collapsed;
             UpdateLayout();
             //AllocConsole();
             XPointer = -5;
@@ -136,6 +137,7 @@ namespace DifficultyUX
             Chart.Visibility = Visibility.Visible;
             ScrollPlayfield.Visibility = Visibility.Visible;
             playFieldSlider.Visibility = Visibility.Visible;
+            Tip.Visibility = Visibility.Visible;
         }
 
         private void Render(IBeatmap beatmap, CatchDifficultyAttributes attributes)
