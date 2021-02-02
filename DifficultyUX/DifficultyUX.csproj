@@ -31,4 +31,8 @@
 	</Resource>
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /iery &quot;$(TargetDir)*.*&quot; &quot;$(SolutionDir)..\Installer\Deploy&quot;" />
+  </Target>
+
 </Project>
