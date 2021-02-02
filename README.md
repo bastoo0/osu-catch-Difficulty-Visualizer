@@ -11,7 +11,7 @@ Also, since I had no idea how to develop a proper WPF application before startin
 
 In case something goes wrong, you can PM me on Discord: bastoo0#7314
 
-But remember that if something is broken, it's not a but, it's a feature :wink:
+But remember that if something is broken, it's not a bug, it's a feature :wink:
 
 Shout out to Ttobas for these hours of debugging at 2AM :smiley:
 
