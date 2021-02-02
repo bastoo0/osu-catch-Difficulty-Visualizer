@@ -2,7 +2,7 @@
 Simple tool made to display an osu!catch beatmap and its difficulty attributes.
 
 Supports .osu files parsing only for osu!catch. osu!standard beatmaps are converted.
-Supports HR, DT and EZ mods. Circle Size is supported but Approach Rate is not.
+Supports HR, DT and EZ mods. Circle Size is supported but Approach Rate is not. You can scroll through a beatmap using your mouse wheel or a slider.
 
 This tool comes bundled with the actual osu! source code (though not updated but working perfectly fine for our use case). See [the osu! Github](https://github.com/ppy/osu).
 
