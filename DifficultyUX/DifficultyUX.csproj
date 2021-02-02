@@ -26,8 +26,9 @@
     <Resource Include="img\banana.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="osu.png" />
-    <Resource Include="osulogo.png" />
+	<Resource Include="img\osu.png">
+		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	</Resource>
   </ItemGroup>
 
 </Project>
