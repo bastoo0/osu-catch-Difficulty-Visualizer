@@ -21,4 +21,4 @@ You can obviously contribute to the source code. You will need to have at least 
 Later, I'm going to implement a way to have both the current SR calculation and an experimental calculation (for PP changes) displayed at the same time. This will only be available via this source code though.
 
 # Download
-You can download the program installer here: [Windows(x86)(.msi)](https://mega.nz/file/Juhk3ahS#ZC4ADkS1bvX4VKtP0pfDRBuky_7vrV9VSwnPSrXOmTQ)
+Soon...
