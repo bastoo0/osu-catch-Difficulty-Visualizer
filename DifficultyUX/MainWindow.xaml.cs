@@ -73,7 +73,7 @@ namespace DifficultyUX
             playFieldSlider.Visibility = Visibility.Collapsed;
             Tip.Visibility = Visibility.Collapsed;
             UpdateLayout();
-            AllocConsole();
+            //AllocConsole();
             XPointer = -5;
             YPointer = -5;
             FormatterY = x => x.ToString("N02");
