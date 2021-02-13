@@ -73,7 +73,7 @@ namespace DifficultyUX
             playFieldSlider.Visibility = Visibility.Collapsed;
             Tip.Visibility = Visibility.Collapsed;
             UpdateLayout();
-            //AllocConsole();
+            AllocConsole();
             XPointer = -5;
             YPointer = -5;
             FormatterY = x => x.ToString("N02");
@@ -215,8 +215,7 @@ namespace DifficultyUX
                 
                     if(!(obj is TinyDroplet) && !(obj is BananaShower))
                     {
-                        Fruits.Add(fruit);
-                    }
+                        Fruits.Add(fruit);                    }
                 }
                 else
                 { 
@@ -257,11 +256,30 @@ namespace DifficultyUX
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             ScrollPlayfield.ScrollToVerticalOffset(e.NewValue);
+            int intOffset = Convert.ToInt32(playField.Height) - Convert.ToInt32(e.NewValue);
+            int fruitNumber = Fruits.FindIndex((fruit) => {
+                double coord = Canvas.GetBottom(fruit);
+                return coord > intOffset - 150 && coord <= intOffset + 150;
+
+            });
+
+            if (fruitNumber == -1)
+                return;
+            var chart = Chart;
+            var series = chart.Series[0];
+            var point = ClosestPointTo(series, fruitNumber, AxisOrientation.X);
+
+            if (point == null)
+                return;
+
+            this.XPointer = point.X;
+            this.YPointer = point.Y;
         }
 
         private void ScrollPlayfield_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
             playFieldSlider.Value = e.VerticalOffset;
+            
         }
 
         private void OnMouseMove(object sender, MouseEventArgs e)
