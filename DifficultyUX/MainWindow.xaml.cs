@@ -73,20 +73,24 @@ namespace DifficultyUX
             playFieldSlider.Visibility = Visibility.Collapsed;
             Tip.Visibility = Visibility.Collapsed;
             UpdateLayout();
-            //AllocConsole();
-            XPointer = -5;
-            YPointer = -5;
+            AllocConsole();
+            XPointer = 0;
+            YPointer = 0;
             FormatterY = x => x.ToString("N02");
-            FormatterX = x => x.ToString("N00");
-
-
-            var values = new GearedValues<double>();
+            FormatterX = x => x.ToString("N00");   
 
             SeriesCollection = new SeriesCollection {
                 new GLineSeries
                 {
-                    Title = "Strains",
-                    Values = values,
+                    Title = "Stable strains",
+                    Values = new GearedValues<double>(),
+                    PointGeometry = null,
+                    StrokeThickness = 0.5
+                },
+                new GLineSeries
+                {
+                    Title = "New strains",
+                    Values = new GearedValues<double>(),
                     PointGeometry = null,
                     StrokeThickness = 0.5
                 }
@@ -124,13 +128,16 @@ namespace DifficultyUX
             ProcessorWorkingBeatmap beatmap = difficulty.getProcessedBeatmap();
             RulesetInfo r = beatmap.BeatmapInfo.Ruleset;
             CatchDifficultyAttributes attributes = difficulty.getCatchDifficultyAttributes() as CatchDifficultyAttributes;
+            SRbox.Text += "New Star Rating: " + attributes.NewStarRating.ToString("N2");
 
             Render(beatmap.GetPlayableBeatmap(r, difficulty.getMods(new CatchRuleset())), attributes);
 
             if (loadingBeatmap)
             {
-                var strains = attributes.DifficultyFactor;
-                SeriesCollection[0].Values = strains.AsGearedValues();
+                var oldStrains = attributes.DifficultyFactor;
+                var newStrains = attributes.NewDiff;
+                SeriesCollection[0].Values = oldStrains.AsGearedValues();
+                SeriesCollection[1].Values = newStrains.AsGearedValues();
             }
 
             openBeatmapLabel.Visibility = Visibility.Hidden;
@@ -234,19 +241,19 @@ namespace DifficultyUX
             {
                 var strains = attributes.DifficultyFactor;
                 var rawStrains = attributes.RawDiff;
+                var newStrains = attributes.NewDiff;
 
                 for (int i = 0; i < strains.Count; i++)
                 {
                     TextBlock textBlock = new TextBlock();
-                    textBlock.Text = "#" + (i + 1) + "\n" + Math.Round(strains[i], 3) + "\nRaw: " + Math.Round(rawStrains[i], 3);
+                    textBlock.Text = "#" + (i + 1) + "\nOld:" + Math.Round(strains[i], 3) + "\nNew: " + Math.Round(newStrains[i], 3);
                     textBlock.FontSize = 14;
                     Canvas.SetLeft(textBlock, Canvas.GetLeft(Fruits[i + 1]) + 22 * Scale);
                     Canvas.SetBottom(textBlock, Canvas.GetBottom(Fruits[i + 1]) + 5 * Scale);
                     playField.Children.Add(textBlock);
                 }
             }
-        }
-        
+        }        
 
         public string GetFilePath()
         {
@@ -256,30 +263,28 @@ namespace DifficultyUX
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             ScrollPlayfield.ScrollToVerticalOffset(e.NewValue);
-            int intOffset = Convert.ToInt32(playField.Height) - Convert.ToInt32(e.NewValue);
+           /* int intOffset = Convert.ToInt32(playField.Height) - Convert.ToInt32(e.NewValue);
             int fruitNumber = Fruits.FindIndex((fruit) => {
                 double coord = Canvas.GetBottom(fruit);
                 return coord > intOffset - 150 && coord <= intOffset + 150;
-
             });
 
             if (fruitNumber == -1)
                 return;
             var chart = Chart;
-            var series = chart.Series[0];
+            var series = chart.Series[1];
             var point = ClosestPointTo(series, fruitNumber, AxisOrientation.X);
 
             if (point == null)
                 return;
 
             this.XPointer = point.X;
-            this.YPointer = point.Y;
+            this.YPointer = point.Y;*/
         }
 
         private void ScrollPlayfield_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
             playFieldSlider.Value = e.VerticalOffset;
-            
         }
 
         private void OnMouseMove(object sender, MouseEventArgs e)
@@ -287,7 +292,7 @@ namespace DifficultyUX
 	        var chart = (LiveCharts.Wpf.CartesianChart) sender;
             var mouseCoordinate = e.GetPosition(chart);
             var p = chart.ConvertToChartValues(mouseCoordinate);
-            var series = chart.Series[0];
+            var series = chart.Series[1];
             var point = ClosestPointTo(series, p.X, AxisOrientation.X);
 
             if (point == null)
@@ -304,6 +309,7 @@ namespace DifficultyUX
             var p = chart.ConvertToChartValues(mouseCoordinate);
 
             var index = Convert.ToInt32(Math.Round(p.X));
+            if (index < 0) index = 1;
             var pointedFruit = Fruits[index];
             var location = Canvas.GetBottom(pointedFruit);
 

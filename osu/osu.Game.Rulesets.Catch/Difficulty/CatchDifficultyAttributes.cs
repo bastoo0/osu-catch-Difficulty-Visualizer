@@ -11,5 +11,8 @@ namespace osu.Game.Rulesets.Catch.Difficulty
         public double ApproachRate;
         public List<double> DifficultyFactor;
         public List<double> RawDiff;
+        public List<double> NewDiff;
+        public double NewStarRating;
+
     }
 }

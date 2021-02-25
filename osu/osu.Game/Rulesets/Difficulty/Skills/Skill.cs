@@ -45,24 +45,39 @@ namespace osu.Game.Rulesets.Difficulty.Skills
         private double currentStrain = 1; // We keep track of the strain level at all times throughout the beatmap.
         private double currentSectionPeak = 1; // We also keep track of the peak strain level in the current section.
 
+        private double currentNewStrain = 1; // We keep track of the strain level at all times throughout the beatmap.
+        private double currentNewSectionPeak = 1; // We also keep track of the peak strain level in the current section.
+
         private readonly List<double> strainPeaks = new List<double>();
+        private readonly List<double> newStrainPeaks = new List<double>();
+
         public List<double> StrainValues = new List<double>();
         public List<double> RawValues = new List<double>();
+        public List<double> NewStrains = new List<double>();
+        public double NewStarRating;
+
 
         /// <summary>
         /// Process a <see cref="DifficultyHitObject"/> and update current strain values accordingly.
         /// </summary>
         public void Process(DifficultyHitObject current)
         {
-            double currentRaw = StrainValueOf(current);
+            double currentRaw = OldStrainValueOf(current);
+            double newRaw = StrainValueOf(current);
 
             currentStrain *= strainDecay(current.DeltaTime);
             currentStrain += currentRaw * SkillMultiplier;
 
             currentSectionPeak = Math.Max(currentStrain, currentSectionPeak);
 
+            currentNewStrain *= strainDecay(current.DeltaTime);
+            currentNewStrain += newRaw * SkillMultiplier;
+
+            currentNewSectionPeak = Math.Max(currentNewStrain, currentNewSectionPeak);
+
             StrainValues.Add(currentStrain);
             RawValues.Add(currentRaw);
+            NewStrains.Add(currentNewStrain);
 
             Previous.Push(current);
         }
@@ -72,6 +87,9 @@ namespace osu.Game.Rulesets.Difficulty.Skills
         /// </summary>
         public void SaveCurrentPeak()
         {
+            if (Previous.Count > 0)
+                newStrainPeaks.Add(currentNewSectionPeak);
+
             if (Previous.Count > 0)
                 strainPeaks.Add(currentSectionPeak);
         }
@@ -86,15 +104,30 @@ namespace osu.Game.Rulesets.Difficulty.Skills
             // This means we need to capture the strain level at the beginning of the new section, and use that as the initial peak level.
             if (Previous.Count > 0)
                 currentSectionPeak = currentStrain * strainDecay(offset - Previous[0].BaseObject.StartTime);
+
+            if (Previous.Count > 0)
+                currentNewSectionPeak = currentNewStrain * strainDecay(offset - Previous[0].BaseObject.StartTime);
         }
 
         /// <summary>
         /// Returns the calculated difficulty value representing all processed <see cref="DifficultyHitObject"/>s.
         /// </summary>
-        public double DifficultyValue()
+        public double[] DifficultyValue()
         {
             double difficulty = 0;
             double weight = 1;
+
+            // Difficulty is the weighted sum of the highest strains from every section.
+            // We're sorting from highest to lowest strain.
+            foreach (double strain in newStrainPeaks.OrderByDescending(d => d))
+            {
+                difficulty += strain * weight;
+                weight *= DecayWeight;
+            }
+            double newDiff = difficulty;
+
+            difficulty = 0;
+            weight = 1;
 
             // Difficulty is the weighted sum of the highest strains from every section.
             // We're sorting from highest to lowest strain.
@@ -104,13 +137,15 @@ namespace osu.Game.Rulesets.Difficulty.Skills
                 weight *= DecayWeight;
             }
 
-            return difficulty;
+            return new double []{difficulty, newDiff};
         }
 
         /// <summary>
         /// Calculates the strain value of a <see cref="DifficultyHitObject"/>. This value is affected by previously processed objects.
         /// </summary>
+        protected abstract double OldStrainValueOf(DifficultyHitObject current);
         protected abstract double StrainValueOf(DifficultyHitObject current);
+
 
         private double strainDecay(double ms) => Math.Pow(StrainDecayBase, ms / 1000);
     }

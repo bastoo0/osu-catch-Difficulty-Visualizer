@@ -87,7 +87,7 @@ namespace DifficultyUX
         {
             string doc = new string("");
             doc += "Beatmap: " + parsed.Beatmap + "\n";
-            doc += "Star Rating: " + parsed.Stars;
+            doc += "Old Star Rating: " + parsed.Stars + "\n";
 
             return doc;
         }
