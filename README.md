@@ -16,9 +16,7 @@ But remember that if something is broken, it's not a bug, it's a feature :wink:
 Shout out to Ttobas for these hours of debugging at 2AM :smiley:
 
 # For developers
-You can obviously contribute to the source code. You will need to have at least .NET Core 5.0 installed and Visual Studio 2019 (not an earlier version) to open the solution.
-
-Later, I'm going to implement a way to have both the current SR calculation and an experimental calculation (for PP changes) displayed at the same time. This will only be available via this source code though.
+You can obviously contribute to the source code. You will need to have at least .NET Core 5.0 installed and Visual Studio 2019 (or an earlier version) to open the solution.
 
 # Download
 Coming soon...
