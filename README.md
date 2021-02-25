@@ -7,7 +7,7 @@ Supports HR, DT and EZ mods. Circle Size is supported but Approach Rate is not. 
 This tool comes bundled with the actual osu! source code (though not updated but working perfectly fine for our use case). See [the osu! Github](https://github.com/ppy/osu).
 
 This is meant to help for the osu!catch performance points developments. It can be used as a tool for mapping but be aware that it might not display a perfect representation of every beatmap.
-Also, since I had no idea how to develop a proper WPF application before starting this project, you will notice that the user interface and the UI in general is pretty bad. I would greatly appreciate a PR to make things a little bit better :sweat_smile:
+Also, since I had no idea how to develop a proper WPF application before starting this project, you will notice that the user interface in general is pretty bad. I would greatly appreciate a PR to make things a little bit better :sweat_smile:
 
 In case something goes wrong, you can PM me on Discord: bastoo0#7314
 
